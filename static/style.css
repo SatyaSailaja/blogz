@@ -1,0 +1,10 @@
+h1{
+    text-align: center;
+    color : dodgerblue;
+}
+.error{
+    color: red;
+}
+body{
+    background-image:url("Blog-background.png"); 
+}

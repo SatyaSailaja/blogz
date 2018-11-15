@@ -2,9 +2,10 @@
 
 {% block content %}
     
-    <h1>{{post.title}}</h1>
-    <p>{{post.body}}</p>
-    <p>{{post.pub_date}}</p>
+    <h1>{{title}}</h1>
+    <p>{{body}}</p>
+    <p>Post date:{{pub_date}}</p>
+    Posted by: <a href="/blog?userid={{userid}}"><p>{{ user }}</p>
 
                
 {% endblock %}

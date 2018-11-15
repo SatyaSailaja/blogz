@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Welcome to blog </h1>
+
+
+           
+        {% for user in users %}
+
+        <h2> <a href= "/blog?id= {{user.id }}" > {{user.title}} </a> </h2>
+            <p> {{user.body}} </p>
+            <p>Post dated:{{user.pub_date}}</p>
+            <p >Written by <a href="/blog?userid={{user.owner.id}}">{{ user.owner.username }} </a></p>
+        
+        
+      
+{% endfor %}
+{% endblock %}

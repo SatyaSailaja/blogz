@@ -29,16 +29,18 @@ class Blog(db.Model):
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(120))
+    #pw_hash = db.Column(db.String(120))
     password = db.Column(db.String(120))
     blogs = db.relationship('Blog', backref='owner')
    
     def __init__(self, username, password):
         self.username = username
         self.password= password
+        #self.pw_hash = make_pw_hash(password)
 
 @app.before_request
 def require_login():
-    allowed_routes = ['login','blog','signup','index']
+    allowed_routes = ['login','blog','signup','index','static']
     if request.endpoint not in allowed_routes and 'username' not in session:
         return redirect('/login')
 
@@ -149,7 +151,9 @@ def blog():
        # page, app.config['POSTS_PER_PAGE'], False)
     #posts = Blog.query.order_by(Blog.id.desc()).paginate(
     #    page, 5, False)
-    posts = Blog.query.order_by(Blog.id.desc()).all()
+    posts = Blog.query.order_by(Blog.id.desc()).paginate(per_page=5)
+    
+    
     
     if blog_id :
          post = Blog.query.filter_by(id=blog_id).first()        
@@ -188,7 +192,14 @@ def new_post():
              return render_template('newpost.html', title_error=title_error, body_error=body_error, 
                 blog_title=blog_title, blog_body=blog_body)
     return render_template('newpost.html') 
-    
+@app.route('/delete-post', methods=['POST'])
+def delete_post():
+
+    task_id = int(request.form['id'])
+    task = Blog.query.get(task_id)
+    db.session.delete(task)
+    db.session.commit()
+    return redirect('/')
 
 if  __name__ == "__main__":
     app.run()

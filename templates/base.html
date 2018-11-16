@@ -5,15 +5,19 @@
 
 </head>
 <body>
-        <nav>
-                <a href="/index">home</a> |
-                <a href="/blog">all posts</a> |
-                <a href="/newpost">newpost</a>|
-               
-                <a href="/login">login</a> |
-                <a href="/logout">logout</a>
-               
-        </nav>
+
+
+        <table style="width:100%" >
+                <tr>
+                  <th><a href="/index">home</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="/blog"> all posts</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="/newpost">newpost </a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  </th>
+                  <th><a href="/login">login</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <a href="/logout">logout</a></th>
+                </tr>
+        </table>
+       
    
     {% with messages = get_flashed_messages(with_categories=True) %}
         <ul>

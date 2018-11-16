@@ -8,3 +8,6 @@ h1{
 body{
     background-image:url("Blog-background.png"); 
 }
+th {
+    text-align: left ;
+}
